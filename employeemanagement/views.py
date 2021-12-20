@@ -109,7 +109,6 @@ class EmployeeView(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Create
     def doj(self,request):
         currentDate = datetime.date.today()
         totalExp = int(self.request.query_params.get('doj'))
-        """20-12-2019"""
         currentDate = datetime.date(currentDate.year-totalExp,currentDate.month,currentDate.day)
         queryset = Employee.objects.all().filter(dateOfJoining__lte=currentDate)
         serializer = EmployeeSerializer(queryset,many=True)
