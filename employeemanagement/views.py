@@ -125,6 +125,10 @@ class EmployeeView(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Create
 
 
 
+
+
+
+
 class DesignationView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.CreateModelMixin):
     serializer_class = DesignationSerializer
     queryset = Designation.objects.all()

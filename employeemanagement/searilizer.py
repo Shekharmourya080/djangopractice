@@ -19,7 +19,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     # department = serializers.RelatedField(many=False,queryset=Department.objects.all())
     class Meta:
         model = Employee
-        fields = ('firstName', 'lastName', 'middleName', 'dob','dateOfJoining','deptId','desId')
+        fields = ('firstName', 'lastName', 'middleName', 'dob','dateOfJoining','deptId','desId','salary',)
         # extraKwargs =('department',)
 
 

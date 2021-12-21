@@ -50,6 +50,7 @@ class Employee(models.Model):
     lastName = models.CharField(max_length=100,db_column='last_name')
     middleName = models.CharField(max_length=100,db_column='middle_name', null=True)
     dob = models.DateField()
+    salary = models.DecimalField(max_digits=19,decimal_places=6 ,db_column='Emp_salary')
     dateOfJoining = models.DateField(db_column='date_of_joining')
     deptId = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, db_column='dept_id')
     desId = models.ForeignKey(to=Designation,on_delete=models.CASCADE,null=True,db_column='des_id')
