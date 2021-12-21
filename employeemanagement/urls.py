@@ -15,7 +15,7 @@ router.register('assignment',viewset=views.AssignmentView)
 router.register('topic',viewset=views.TopicView)
 router.register('routine',viewset=views.RoutineViews)
 router.register('tempEmp',viewset=tempview.EmployeeView)
-router.register('tempDep',viewset=tempview.DepartmentView)
+router.register('tempDepCHeck',viewset=tempview.DepartmentView)
 router.register('newproject',viewset=views.NewprojectView)
 
 
