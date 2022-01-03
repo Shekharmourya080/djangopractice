@@ -11,6 +11,9 @@ class Department(models.Model):
     def __str__(self):
         return self.deptName
 
+
+
+
 class Designation(models.Model):
     """Designation Database"""
     id = models.IntegerField(primary_key=True, auto_created=True, db_column='Des_id')
@@ -43,6 +46,8 @@ class Newproject(models.Model):
 
 
 
+
+
 class Employee(models.Model):
     """Employee Database rep"""
     id = models.AutoField(primary_key=True,auto_created=True,db_column='emp_id')
@@ -57,6 +62,9 @@ class Employee(models.Model):
     projectId = models.ForeignKey(to=ProjectDetails,on_delete=models.CASCADE,null=True,db_column='Project_id')
     # designation = models.ForeignObject(to=Designation,from_fields='desId',to_fields='id',on_delete=models.CASCADE)
     objects = models.Manager()
+
+    def __str__(self):
+        return self.firstName + ' '+ self.lastName
 
 
 class PunchinDetails(models.Model):
@@ -94,6 +102,12 @@ class Routine(models.Model):
      routineName = models.CharField(max_length=100, db_column='routine_name')
      routineDesc = models.CharField(max_length=1000, db_column='routine_desc')
 
+class EmployeeAdd(models.Model):
+    id = models.AutoField(primary_key=True, auto_created=True, db_column='EmpAdd_id')
+    EmpState = models.CharField(max_length=100,db_column='Employee_State')
+    EmpDistrict = models.CharField(max_length=100,db_column='Employee_District')
+    EmpContact = models.IntegerField(db_column='Emp_contact')
+    empid = models.ForeignKey(to=Employee, on_delete=models.CASCADE, null=True, db_column='Emp_id')
 
 
 

@@ -2,9 +2,9 @@ from rest_framework import viewsets,mixins,status
 from rest_framework.decorators import action
 from rest_framework.response import  Response
 import datetime
-from core.models import Newproject,Employee, Designation, Department, ProjectDetails,Assignment, Topic,Routine
+from core.models import Newproject,Employee, Designation, Department, ProjectDetails,Assignment, Topic,Routine,EmployeeAdd
 from employeemanagement.searilizer import EmployeeSerializer,DesignationSerializer,DepartmentSerializer\
-    ,ProjectDetailsSerializer,AssignmentSerializer,TopicSerializer,RoutineSerializer,NewprojectSerializer
+    ,ProjectDetailsSerializer,AssignmentSerializer,TopicSerializer,RoutineSerializer,NewprojectSerializer,EmployeeAddSerializer
 
 # Create your views here.
 
@@ -45,6 +45,16 @@ class EmployeeView(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Create
     #     queryset = Employee.objects.all().filter(firstName=firstName)
     #     serializer = EmployeeSerializer(queryset,many=True)
     #     return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=['GET'], detail=False, url_path='EmployeeName')
+    def FirstName(self, request):
+        firstName = self.request.query_params.get('firstName')
+        print(firstName)
+        queryset = Employee.objects.all().filter(firstName__contains=firstName)
+        serializer = EmployeeSerializer(queryset, many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+
 
     @action(methods=['GET'],detail=False,url_path='searchByFirstName')
     def findByFirstName(self, request):
@@ -113,6 +123,30 @@ class EmployeeView(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.Create
         queryset = Employee.objects.all().filter(dateOfJoining__lte=currentDate)
         serializer = EmployeeSerializer(queryset,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+
+
+class EmployeeAddView(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
+    serializer_class = EmployeeAddSerializer
+    queryset = EmployeeAdd.objects.all()
+
+    def get_queryset(self):
+       queryset = EmployeeAdd.objects.all()
+       return queryset
+
+    @action(methods=['GET'], detail=False, url_path='searchByEmployeeAdd')
+    def EmployeeAdd(self, request):
+        EmpState = self.request.query_params.get('EmpState')
+        queryset = EmployeeAdd.objects.all().filter(EmpState=EmpState)
+        serializer = EmployeeAddSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 

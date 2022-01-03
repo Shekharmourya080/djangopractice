@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.models import Employee,Designation, Department,ProjectDetails,Assignment,Topic,Routine,Newproject
+from core.models import Employee,Designation, Department,ProjectDetails,Assignment,Topic,Routine,Newproject,EmployeeAdd
 
 
 class DesignationSerializer(serializers.ModelSerializer):
@@ -60,3 +60,8 @@ class RoutineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Routine
         fields =('routineName','routineDesc')
+class EmployeeAddSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmployeeAdd
+        fields =('EmpState','EmpDistrict','EmpContact','empid')
+        read_only_fields = ('id',)

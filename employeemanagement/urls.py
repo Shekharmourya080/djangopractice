@@ -17,6 +17,7 @@ router.register('routine',viewset=views.RoutineViews)
 router.register('tempEmp',viewset=tempview.EmployeeView)
 router.register('tempDepCHeck',viewset=tempview.DepartmentView)
 router.register('newproject',viewset=views.NewprojectView)
+router.register('EmployeeAdd',viewset=views.EmployeeAddView)
 
 
 app_name = 'employee'
